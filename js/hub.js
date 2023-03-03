@@ -6,8 +6,17 @@ const loadData = () =>{
 }
 const loadData2 = user =>{
     console.log(user)
-    const firstDiv = document.getElementById('first-id');
-    firstDiv.innerHTML = user.data.too;
-
+    
 }
+
+
+
+
+
+
+
+
+
+
+
 loadData();
