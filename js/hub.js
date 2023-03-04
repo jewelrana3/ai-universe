@@ -42,44 +42,45 @@ const loadData2 = phones => {
         appContainer.appendChild(card)
     });
 };
-const showDetails = _id =>{
-    const url =  `https://openapi.programming-hero.com/api/ai/tool/${_id}`
-    // console.log(url)
+const showDetails = news =>{
+    const url =  `https://openapi.programming-hero.com/api/ai/tool/${news}`
+    console.log(url)
     fetch(url)
     .then(res => res.json())
-    .then(data => displayShowDetails(data.data.tools))
+    .then(data => displayShowDetails(data.data))
 }
 
 const displayShowDetails = (deatails) =>{
-    const {id,image,name,features,published_in} = deatails;
+    console.log(deatails)
+    const {image_link,name,features,published_in} = deatails;
     document.getElementById('modal-body').innerHTML=`
     <div class="col" >
         <div class="card h-100">
-            <img src=${image} class="card-img-top" alt="...">
+            <img src=${image_link[0]} class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">${name}</h5>
-                <p class="p-0 m-0">1.${features[0]}</p>
-                <p class="p-0 m-0">2.${features[1]}</p>
-                <p class="p-0 m-0">3.${features[2]}</p>
-                <div class="card-footer d-flex justify-content-between">
-                    <div>
-                        <h5>${name}</h5>
-                        <p class="p-0 m-0">${published_in}</p>
-                    </div>
+            <h5 class="card-title">${name}</h5>
+            <p class="p-0 m-0">1.${features[0]}</p>
+            <p class="p-0 m-0">2.${features[1]}</p>
+            <p class="p-0 m-0">3.${features[2]}</p>
+            <div class="card-footer d-flex justify-content-between">
+                <div>
+                    <h5>${name}</h5>
+                    <p class="p-0 m-0">${published_in}</p>
                 </div>
             </div>
+            </div>
+            
         </div>
     </div>
         
         `;
 };
 
-document.getElementById('submit').addEventListener('click',function(){
-    const submitText = document.getElementById('submit')
-})
+// document.getElementById('submit').addEventListener('click',function(){
+//     const submitText = document.getElementById('submit')
+// })
  
 
 loadData();
 
- 
 
