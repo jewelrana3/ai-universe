@@ -10,14 +10,13 @@ const loadData = () => {
         .then(data => loadData2(data.data.tools))
 }
 
-const loadData2 = (phones) => {
+const loadData2 = phones => {
     console.log(phones)
     const appContainer = document.getElementById('app-container');
     // see more side
-    
+    const seeMore = document.getElementById('see-more');
     if(phones.length > 6){
-        phones = phones.slice(0,6)
-        const seeMore = document.getElementById('see-more');
+        phones = phones.slice(0,12)
         seeMore.classList.remove('d-none')
     }
     else{
@@ -54,6 +53,7 @@ const loadData2 = (phones) => {
     });
    
 };
+
 // toggleSpiner(false);
 
 const showDetails = news => {
@@ -72,16 +72,16 @@ const displayShowDetails = (deatails) => {
         <div class="card h-100">
            <div class="d-flex">
                 <div>
-                    <img src=${image_link[0]} class="card-img-top" alt="...">
+                    <img src=${image_link[0] ? image_link[0] : 'not dtails'} class="card-img-top" alt="...">
                     <div class="card-body">
-                    <h5 class="card-title">${input_output_examples[0].input}</h5>
+                    <h5 class="card-title">${input_output_examples[0].input ? input_output_examples[0].input:'not a title' }</h5>
                     <p class="card-title p-0 m-0">${input_output_examples[0].output}</p>
                 </div>
 
                 <div class="p-4">
                     <h4 class="p-0 m-0">${description}</h4>
                     <div class="d-flex gap-4 p-4">
-                        <div> <p class="p-0 m-0 mt-2">1.${pricing[0].price}</p></div>
+                        <div> <p class="p-0 m-0 mt-2">1.${pricing[0].price ? pricing[0].price:'not a doller'}</p></div>
                         <div> <p class="p-0 m-0 mt-2">1.${pricing[1].price}</p></div>
                         <div> <p class="p-0 m-0 mt-2">1.${pricing[2].price}</p></div>
                 </div>
@@ -98,7 +98,7 @@ const displayShowDetails = (deatails) => {
 
                     <div>
                         <h3>integrations</h3>
-                        <p class="p-0 m-0">.${integrations[0]}</p class="p-0 m-0">
+                        <p class="p-0 m-0">.${integrations[0] ? integrations [0]:'not found'}</p class="p-0 m-0">
                         <p class="p-0 m-0">.${integrations[1]}</p class="p-0 m-0">
                         <p class="p-0 m-0">.${integrations[2]}</p class="p-0 m-0">
                     </div>
@@ -113,28 +113,33 @@ const displayShowDetails = (deatails) => {
         `;
 };
 
-// toggleSpiner(false);
 
+const proessSearch = (gaba) =>{
+    // toggleSpiner(true);
+    loadData(gaba)
+}
 // submit button
 document.getElementById('submit').addEventListener('click',function(){
-//    start loder
-toggleSpiner(true);
+   //start loder
+proessSearch(6)
 
 })
 
-const toggleSpiner = isLoading =>{
-    const loderSection = document.getElementById('loder');
-    if(isLoading){
-        loderSection.classList.remove('d-none')
- }
-    else{
-        loderSection.classList.add('d-none')
-    }
-}
+// const toggleSpiner = isLoading =>{
+//     const loderSection = document.getElementById('loder');
+//     if(isLoading){
+//         loderSection.classList.remove('d-none')
+//  }
+//     else{
+//         loderSection.classList.add('d-none')
+//     }
+// }
 
 document.getElementById('btn-show-all').addEventListener('click',function(){
-    processSearch(6);
+    proessSearch();
+   
 });
+
 
 loadData();
 
