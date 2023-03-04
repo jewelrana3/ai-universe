@@ -47,22 +47,24 @@ const showDetails = _id =>{
     // console.log(url)
     fetch(url)
     .then(res => res.json())
-    .then(data => displayShowDetails(data.data))
+    .then(data => displayShowDetails(data.data.tools))
 }
 
 const displayShowDetails = (deatails) =>{
-    // const {id,image,name,features,published_in} = deatails;
+    const {id,image,name,features,published_in} = deatails;
     document.getElementById('modal-body').innerHTML=`
     <div class="col" >
         <div class="card h-100">
-            <img src=${deatails.image} class="card-img-top" alt="...">
+            <img src=${image} class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">${deatails.name}</h5>
-                
+                <h5 class="card-title">${name}</h5>
+                <p class="p-0 m-0">1.${features[0]}</p>
+                <p class="p-0 m-0">2.${features[1]}</p>
+                <p class="p-0 m-0">3.${features[2]}</p>
                 <div class="card-footer d-flex justify-content-between">
                     <div>
-                        <h5>${deatails.name}</h5>
-                        <p class="p-0 m-0">${deatails.published_in}</p>
+                        <h5>${name}</h5>
+                        <p class="p-0 m-0">${published_in}</p>
                     </div>
                 </div>
             </div>
@@ -70,12 +72,14 @@ const displayShowDetails = (deatails) =>{
     </div>
         
         `;
-}
+};
+
+document.getElementById('submit').addEventListener('click',function(){
+    const submitText = document.getElementById('submit')
+})
  
 
 loadData();
 
  
-// <p class="p-0 m-0">1.${features[0]}</p>
-// <p class="p-0 m-0">2.${features[1]}</p>
-// <p class="p-0 m-0">3.${features[2]}</p>
+
