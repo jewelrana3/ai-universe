@@ -23,6 +23,7 @@ const loadData2 = (phones) => {
     else{
         seeMore.classList.add('d-none')
     }
+    // toggleSpiner(false);
     phones.forEach(element => {
         const card = document.createElement('div');
         card.classList.add('col');
@@ -51,7 +52,9 @@ const loadData2 = (phones) => {
         `;
         appContainer.appendChild(card)
     });
+   
 };
+// toggleSpiner(false);
 
 const showDetails = news => {
     const url = `https://openapi.programming-hero.com/api/ai/tool/${news}`
@@ -110,16 +113,29 @@ const displayShowDetails = (deatails) => {
         `;
 };
 
+// toggleSpiner(false);
 
-// handle search button 
-// document.getElementById('btn-click').addEventListener('click',function(){
-//     processSearch(10)
-// })
+// submit button
+document.getElementById('submit').addEventListener('click',function(){
+//    start loder
+toggleSpiner(true);
 
+})
+
+const toggleSpiner = isLoading =>{
+    const loderSection = document.getElementById('loder');
+    if(isLoading){
+        loderSection.classList.remove('d-none')
+ }
+    else{
+        loderSection.classList.add('d-none')
+    }
+}
 
 document.getElementById('btn-show-all').addEventListener('click',function(){
     processSearch(6);
 });
+
 loadData();
 
 
